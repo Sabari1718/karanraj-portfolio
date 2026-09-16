@@ -46,7 +46,7 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
               onClick={() => setActiveFilter(type)}
               className={`px-7 py-2.5 rounded-full text-xs md:text-sm font-bold tracking-wide transition-all duration-300 ${
                 isActive
-                  ? "bg-gradient-to-r from-[var(--primary)] to-[#00B8D4] text-black shadow-[0_0_24px_rgba(0,229,255,0.45)] scale-105 font-extrabold"
+                  ? "bg-gradient-to-r from-[var(--primary)] to-[#EAB308] text-black shadow-[0_0_24px_rgba(250,204,21,0.45)] scale-105 font-extrabold"
                   : "bg-slate-900/70 text-slate-300 border border-white/10 hover:border-[var(--primary)]/40 hover:text-white"
               }`}
             >
@@ -70,7 +70,7 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
 
           return (
             <motion.div key={project.id || index} variants={item} className="h-full">
-              <div className="project-card group h-full flex flex-col rounded-3xl overflow-hidden border border-white/10 bg-[var(--glass-bg)] hover:border-[var(--primary)]/40 transition-all duration-400 hover:-translate-y-2 hover:shadow-[0_24px_48px_rgba(0,0,0,0.6),0_0_30px_rgba(0,229,255,0.15)]">
+              <div className="project-card group h-full flex flex-col rounded-3xl overflow-hidden border border-white/10 bg-[var(--glass-bg)] hover:border-[var(--primary)]/40 transition-all duration-400 hover:-translate-y-2 hover:shadow-[0_24px_48px_rgba(0,0,0,0.6),0_0_30px_rgba(250,204,21,0.15)]">
                 {/* Project Image / Visual Banner */}
                 <div className="relative h-52 overflow-hidden bg-slate-950">
                   {project.image_url ? (
@@ -84,8 +84,8 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
                     </>
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-slate-900 via-[#0b1329] to-[#040814] flex flex-col items-center justify-center relative overflow-hidden">
-                      <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#00E5FF_1px,transparent_1px)] [background-size:16px_16px]" />
-                      <div className="relative z-10 w-16 h-16 rounded-2xl bg-[var(--primary)]/10 border border-[var(--primary)]/25 flex items-center justify-center text-[var(--primary)] shadow-[0_0_24px_rgba(0,229,255,0.2)] group-hover:scale-110 transition-transform">
+                      <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#FACC15_1px,transparent_1px)] [background-size:16px_16px]" />
+                      <div className="relative z-10 w-16 h-16 rounded-2xl bg-[var(--primary)]/10 border border-[var(--primary)]/25 flex items-center justify-center text-[var(--primary)] shadow-[0_0_24px_rgba(250,204,21,0.2)] group-hover:scale-110 transition-transform">
                         {isMobile ? <Smartphone size={28} /> : <Code size={28} />}
                       </div>
                       <span className="relative z-10 text-xs font-semibold uppercase tracking-widest text-slate-400 mt-2">
@@ -104,7 +104,7 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
                     ) : <div />}
 
                     {project.type && (
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-[var(--primary)] text-xs font-semibold backdrop-blur-md">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-yellow-500/15 border border-yellow-500/30 text-[var(--primary)] text-xs font-semibold backdrop-blur-md">
                         {isMobile ? <Smartphone size={12} /> : <Globe size={12} />}
                         {project.type}
                       </span>
@@ -137,7 +137,7 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
                           target="_blank"
                           rel="noreferrer"
                           title="Live Preview"
-                          className="w-9 h-9 rounded-full bg-[var(--primary)]/10 hover:bg-[var(--primary)]/20 border border-[var(--primary)]/30 flex items-center justify-center text-[var(--primary)] transition-all hover:scale-105 shadow-[0_0_12px_rgba(0,229,255,0.15)]"
+                          className="w-9 h-9 rounded-full bg-[var(--primary)]/10 hover:bg-[var(--primary)]/20 border border-[var(--primary)]/30 flex items-center justify-center text-[var(--primary)] transition-all hover:scale-105 shadow-[0_0_12px_rgba(250,204,21,0.15)]"
                           onClick={(e) => e.stopPropagation()}
                         >
                           <ExternalLink size={16} />
@@ -171,7 +171,7 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
                         href={(project.live_url || project.github_url) as string}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--primary)] hover:text-cyan-300 transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--primary)] hover:text-yellow-300 transition-colors"
                       >
                         <span>{project.live_url ? "Launch Live Project" : "Inspect Source"}</span>
                         <ArrowUpRight size={14} />

@@ -132,10 +132,10 @@ export function ContactSection({
             </p>
             <div className="flex flex-wrap gap-3">
               <a
-                href={profile?.github_url || "https://github.com/Sabari1718"}
+                href={profile?.github_url || "https://github.com/udhayachandran"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white/80 hover:text-white hover:border-[var(--primary)]/50 hover:bg-[var(--primary)]/10 hover:shadow-[0_0_20px_rgba(0,229,255,0.2)] transition-all duration-300 text-sm font-semibold group cursor-pointer"
+                className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white/80 hover:text-white hover:border-[var(--primary)]/50 hover:bg-[var(--primary)]/10 hover:shadow-[0_0_20px_rgba(250,204,21,0.2)] transition-all duration-300 text-sm font-semibold group cursor-pointer"
               >
                 <GithubIcon size={18} className="text-white group-hover:text-[var(--primary)] transition-colors" />
                 <span>GitHub</span>
@@ -143,7 +143,7 @@ export function ContactSection({
               </a>
 
               <a
-                href={profile?.linkedin_url || "https://linkedin.com/in/sabarishwaran"}
+                href={profile?.linkedin_url || "https://linkedin.com/in/udhayachandran"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white/80 hover:text-white hover:border-[#0077B5]/60 hover:bg-[#0077B5]/15 hover:shadow-[0_0_20px_rgba(0,119,181,0.25)] transition-all duration-300 text-sm font-semibold group cursor-pointer"

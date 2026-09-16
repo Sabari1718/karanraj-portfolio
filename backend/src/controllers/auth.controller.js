@@ -52,8 +52,8 @@ const login = async (req, res) => {
         });
     }
     catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, message: 'Server Error during login' });
+        console.error("LOGIN ERROR DETAILS:", error);
+        res.status(500).json({ success: false, message: error?.message || 'Server Error during login' });
     }
 };
 exports.login = login;

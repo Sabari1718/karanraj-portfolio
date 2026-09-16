@@ -83,16 +83,16 @@ export function HeroSection({ profile, projectCount }: Props) {
 
             {/* Greeting / Subheading with Developer Terminal Style */}
             <div className="flex justify-center lg:justify-start mb-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 font-mono text-xs md:text-sm shadow-[0_0_15px_rgba(0,229,255,0.15)] backdrop-blur-md">
-                <Terminal size={14} className="text-cyan-400 animate-pulse flex-shrink-0" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-yellow-950/40 border border-yellow-500/30 text-yellow-400 font-mono text-xs md:text-sm shadow-[0_0_15px_rgba(250,204,21,0.15)] backdrop-blur-md">
+                <Terminal size={14} className="text-yellow-400 animate-pulse flex-shrink-0" />
                 <span className="text-slate-400 font-semibold">//</span>
-                <span className="font-bold tracking-wider text-cyan-300 uppercase">{profileStats.greeting_text || "Hello, I'm"}</span>
+                <span className="font-bold tracking-wider text-yellow-300 uppercase">{profileStats.greeting_text || "Hello, I'm"}</span>
               </div>
             </div>
 
             {/* Name with Developer Aesthetic */}
             <h1 className="hero-developer-name text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 leading-tight tracking-tight">
-              {profile?.display_name || profile?.name || "Sabarishwaran S"}
+              {profile?.display_name || profile?.name || "Udhayachandran"}
             </h1>
 
             {/* Animated Title */}
@@ -104,7 +104,7 @@ export function HeroSection({ profile, projectCount }: Props) {
                 className="flex items-center gap-2.5 justify-center lg:justify-start text-[var(--text-secondary)]"
                 style={{ marginTop: '24px', marginBottom: '24px' }}
               >
-                <div className="w-8 h-8 rounded-full bg-[var(--primary)]/10 border border-[var(--primary)]/25 flex items-center justify-center text-[var(--primary)] shadow-[0_0_12px_rgba(0,229,255,0.15)]">
+                <div className="w-8 h-8 rounded-full bg-[var(--primary)]/10 border border-[var(--primary)]/25 flex items-center justify-center text-[var(--primary)] shadow-[0_0_12px_rgba(250,204,21,0.15)]">
                   <MapPin size={15} />
                 </div>
                 <span className="text-sm md:text-base font-semibold uppercase tracking-wider text-slate-300">{profile.location}</span>
@@ -157,7 +157,7 @@ export function HeroSection({ profile, projectCount }: Props) {
                   transition={{ delay: 0.4 + i * 0.1 }}
                   className="stat-card group"
                 >
-                  <div className="text-2xl md:text-3xl lg:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[#38BDF8]">
+                  <div className="text-2xl md:text-3xl lg:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[#F59E0B]">
                     <CountUp end={stat.value} suffix={stat.suffix} />
                   </div>
                   <div className="text-[11px] md:text-xs font-semibold text-slate-400 mt-1.5 uppercase tracking-wider leading-tight group-hover:text-slate-200 transition-colors">
@@ -187,14 +187,14 @@ export function HeroSection({ profile, projectCount }: Props) {
 
               <div className="profile-photo-inner">
                 <img
-                  src={profileImageUrl || "https://ui-avatars.com/api/?name=S&background=121212&color=00E5FF&size=400"}
-                  alt={profile?.name || "Sabarishwaran"}
+                  src={profileImageUrl || "https://ui-avatars.com/api/?name=U&background=121212&color=FACC15&size=400"}
+                  alt={profile?.name || "Udhayachandran"}
                   className="w-full h-full object-cover rounded-full transition-transform duration-500 group-hover:scale-105"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src =
                       "https://ui-avatars.com/api/?name=" +
-                      encodeURIComponent(profile?.name || "S") +
-                      "&background=121212&color=00E5FF&size=400";
+                      encodeURIComponent(profile?.name || "U") +
+                      "&background=121212&color=FACC15&size=400";
                   }}
                 />
               </div>
@@ -202,7 +202,7 @@ export function HeroSection({ profile, projectCount }: Props) {
               {/* Developer Status / Code Tag */}
               <div className="profile-code-chip">
                 <span className="chip-dot" />
-                <span className="font-mono text-[11px] font-semibold tracking-wide text-cyan-300">&lt;sabari.dev /&gt;</span>
+                <span className="font-mono text-[11px] font-semibold tracking-wide text-yellow-300">&lt;udhayachandran.dev /&gt;</span>
               </div>
               {/* Floating badges */}
               <motion.div

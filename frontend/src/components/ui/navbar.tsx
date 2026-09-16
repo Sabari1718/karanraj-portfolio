@@ -12,9 +12,9 @@ interface Props {
 }
 
 const NAV_LINKS = [
-  { name: "About", href: "#home", id: "home", color: "#00E5FF", icon: User },
+  { name: "About", href: "#home", id: "home", color: "#FACC15", icon: User },
   { name: "Experience", href: "#experience", id: "experience", color: "#A78BFA", icon: Briefcase },
-  { name: "Education", href: "#education", id: "education", color: "#38BDF8", icon: GraduationCap },
+  { name: "Education", href: "#education", id: "education", color: "#F59E0B", icon: GraduationCap },
   { name: "Projects", href: "#projects", id: "projects", color: "#FBBF24", icon: Folder },
   { name: "Skills", href: "#skills", id: "skills", color: "#F43F5E", icon: Zap },
   { name: "Contact", href: "#contact", id: "contact", color: "#34D399", icon: Mail },
@@ -58,7 +58,7 @@ export function Navbar({ settings }: Props) {
   if (pathname && pathname.startsWith("/admin")) return null;
 
   const navSettings = settings || {};
-  const logoName = navSettings.logo_name || "Sabari Portfolio";
+  const logoName = navSettings.logo_name || "Udhayachandran Portfolio";
 
   return (
     <header
@@ -81,24 +81,24 @@ export function Navbar({ settings }: Props) {
           onClick={() => setMobileMenuOpen(false)}
           className="group flex items-center gap-2.5 cursor-pointer select-none"
         >
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[var(--primary)]/20 to-[var(--secondary)]/10 border border-[var(--primary)]/30 flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.25)] group-hover:scale-105 transition-transform">
-            <span className="font-display font-black text-xs text-[var(--primary)]">S</span>
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[var(--primary)]/20 to-[var(--secondary)]/10 border border-[var(--primary)]/30 flex items-center justify-center shadow-[0_0_15px_rgba(250,204,21,0.25)] group-hover:scale-105 transition-transform">
+            <span className="font-display font-black text-xs text-[var(--primary)]">U</span>
           </div>
           <span className="font-display text-lg md:text-xl font-black text-white tracking-tight flex items-center gap-1 group-hover:text-[var(--primary)] transition-colors">
-            {logoName === "Sabari Portfolio" ? (
+            {logoName === "Sabari Portfolio" || logoName === "Udhayachandran Portfolio" ? (
               <>
-                Sabari<span className="text-[var(--primary)] drop-shadow-[0_0_8px_rgba(0,229,255,0.6)]">.dev</span>
+                Udhaya<span className="text-[var(--primary)] drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]">.dev</span>
               </>
             ) : (
               logoName
             )}
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--primary)] shadow-[0_0_8px_#00E5FF] animate-pulse ml-0.5" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--primary)] shadow-[0_0_8px_#FACC15] animate-pulse ml-0.5" />
           </span>
         </Link>
 
         {/* Desktop Developer Dock with generous spacing & colorful interactions */}
         <div
-          className="hidden md:flex items-center gap-2 lg:gap-3 bg-[#0a0f1d]/90 backdrop-blur-2xl border border-white/10 p-2 rounded-full shadow-[0_12px_40px_rgba(0,0,0,0.6),0_0_25px_rgba(0,229,255,0.08)]"
+          className="hidden md:flex items-center gap-2 lg:gap-3 bg-[#0a0f1d]/90 backdrop-blur-2xl border border-white/10 p-2 rounded-full shadow-[0_12px_40px_rgba(0,0,0,0.6),0_0_25px_rgba(250,204,21,0.08)]"
           onMouseLeave={() => setHoveredLink(null)}
         >
           {NAV_LINKS.map((link) => {
@@ -210,7 +210,7 @@ export function Navbar({ settings }: Props) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.96 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-[125%] left-0 w-full bg-[#080b12]/98 backdrop-blur-2xl border border-white/10 rounded-3xl p-4 flex flex-col gap-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(0,229,255,0.15)] md:hidden pointer-events-auto z-50"
+              className="absolute top-[125%] left-0 w-full bg-[#080b12]/98 backdrop-blur-2xl border border-white/10 rounded-3xl p-4 flex flex-col gap-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(250,204,21,0.15)] md:hidden pointer-events-auto z-50"
             >
               {NAV_LINKS.map((link) => {
                 const isActive = activeSection === link.id;

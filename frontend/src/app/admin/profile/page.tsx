@@ -178,7 +178,7 @@ export default function ProfileAdmin() {
                       key={preset}
                       type="button"
                       onClick={() => setForm((p) => ({ ...p, greeting_text: preset }))}
-                      className="text-[11px] px-2.5 py-1 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 border border-white/10 hover:border-cyan-500/40 transition-all cursor-pointer font-medium"
+                      className="text-[11px] px-2.5 py-1 rounded-lg bg-white/5 hover:bg-yellow-500/20 text-slate-300 hover:text-yellow-300 border border-white/10 hover:border-yellow-500/40 transition-all cursor-pointer font-medium"
                     >
                       {preset}
                     </button>
@@ -215,7 +215,7 @@ export default function ProfileAdmin() {
                 <button
                   type="button"
                   onClick={() => setForm((p) => ({ ...p, bio: DEFAULT_BIO }))}
-                  className="text-[11px] text-cyan-400 hover:underline cursor-pointer font-mono"
+                  className="text-[11px] text-yellow-400 hover:underline cursor-pointer font-mono"
                 >
                   ↺ Reset to default text
                 </button>
@@ -244,7 +244,7 @@ export default function ProfileAdmin() {
                 name="name"
                 value={form.name ?? ""}
                 onChange={handleChange}
-                placeholder="Sabarishwaran S"
+                placeholder="Udhayachandran"
                 required
               />
               <Field
@@ -252,7 +252,7 @@ export default function ProfileAdmin() {
                 name="display_name"
                 value={form.display_name ?? ""}
                 onChange={handleChange}
-                placeholder="Sabari (shown on portfolio logo & banner)"
+                placeholder="Udhaya (shown on portfolio logo & banner)"
               />
             </div>
           </div>
@@ -307,14 +307,14 @@ export default function ProfileAdmin() {
             <div className="mt-8 pt-6 border-t border-white/[0.06]">
               <div className="flex items-center justify-between mb-4">
                 <p className="text-[11px] font-mono uppercase tracking-wider text-slate-400 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
                   Live Home Page Preview:
                 </p>
-                <span className="text-[11px] text-cyan-400/90 font-mono font-medium">Updates in real-time</span>
+                <span className="text-[11px] text-yellow-400/90 font-mono font-medium">Updates in real-time</span>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-2xl bg-black/40 border border-white/5">
                 <div className="text-center p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-                  <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[#38BDF8]">
+                  <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[#F59E0B]">
                     {form.years_experience || "2+"}
                   </div>
                   <div className="text-[10px] md:text-[11px] font-semibold text-slate-400 uppercase tracking-wider mt-1.5">
@@ -322,7 +322,7 @@ export default function ProfileAdmin() {
                   </div>
                 </div>
                 <div className="text-center p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-                  <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[#38BDF8]">
+                  <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[#F59E0B]">
                     {form.projects_count || "1+"}
                   </div>
                   <div className="text-[10px] md:text-[11px] font-semibold text-slate-400 uppercase tracking-wider mt-1.5">
@@ -330,7 +330,7 @@ export default function ProfileAdmin() {
                   </div>
                 </div>
                 <div className="text-center p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-                  <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[#38BDF8]">
+                  <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[#F59E0B]">
                     {form.technologies_count || "15+"}
                   </div>
                   <div className="text-[10px] md:text-[11px] font-semibold text-slate-400 uppercase tracking-wider mt-1.5">
@@ -338,7 +338,7 @@ export default function ProfileAdmin() {
                   </div>
                 </div>
                 <div className="text-center p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-                  <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[#38BDF8]">
+                  <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[#F59E0B]">
                     {form.repos_count || "10+"}
                   </div>
                   <div className="text-[10px] md:text-[11px] font-semibold text-slate-400 uppercase tracking-wider mt-1.5">
@@ -358,7 +358,7 @@ export default function ProfileAdmin() {
               name="email"
               value={form.email ?? ""}
               onChange={handleChange}
-              placeholder="sabarishwaran@example.com"
+              placeholder="udhayachandran@example.com"
               type="email"
               icon={<Mail size={16} />}
             />

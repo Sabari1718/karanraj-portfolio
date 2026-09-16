@@ -13,10 +13,10 @@ const outfit = Outfit({
 
 export async function generateMetadata(): Promise<Metadata> {
   const res = await PortfolioAPI.getProfile();
-  const title = res.success && res.data ? `${res.data.name} | Portfolio` : "Sabari Portfolio";
+  const title = res.success && res.data ? `${res.data.name} | Portfolio` : "Udhayachandran | Flutter Developer Portfolio";
   return {
     title,
-    description: "Full Stack Developer Portfolio",
+    description: "Udhayachandran - Flutter Developer Portfolio",
   };
 }
 
@@ -26,7 +26,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const profileRes = await PortfolioAPI.getProfile();
-  const profileName = profileRes.success && profileRes.data ? profileRes.data.name : "Sabari Portfolio";
+  const profileName = profileRes.success && profileRes.data ? profileRes.data.name : "Udhayachandran";
   
   const navbarRes = await PortfolioAPI.getNavbarSettings();
   const navbarSettings = navbarRes.success && navbarRes.data ? navbarRes.data : null;

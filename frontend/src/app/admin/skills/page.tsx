@@ -172,7 +172,7 @@ export default function AdminSkills() {
                 onClick={() => setFilterCategory(cat)}
                 className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs md:text-sm font-semibold transition-all cursor-pointer ${
                   isSelected
-                    ? "bg-[var(--primary)] text-black shadow-[0_0_15px_rgba(0,229,255,0.3)]"
+                    ? "bg-[var(--primary)] text-black shadow-[0_0_15px_rgba(250,204,21,0.3)]"
                     : "text-slate-400 hover:text-white hover:bg-white/5"
                 }`}
               >

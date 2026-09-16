@@ -86,10 +86,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-[#050505]/80 backdrop-blur-xl border-b border-white/10 z-40 flex items-center justify-between px-6">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] flex items-center justify-center font-bold text-black">
-            S
+            U
           </div>
           <h2 className="text-xl font-bold tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
-            SABARI
+            UDHAYA
           </h2>
         </div>
         <button 
@@ -109,12 +109,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Top Brand Area */}
         <div className="h-24 flex items-center px-6 border-b border-white/[0.08]">
           <Link href="/admin" className="flex items-center gap-3.5 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--primary)] via-[#00B8D4] to-cyan-500 shadow-[0_0_20px_rgba(0,229,255,0.35)] flex items-center justify-center font-black text-black text-lg group-hover:scale-105 transition-transform">
-              S
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--primary)] via-[#EAB308] to-yellow-500 shadow-[0_0_20px_rgba(250,204,21,0.35)] flex items-center justify-center font-black text-black text-lg group-hover:scale-105 transition-transform">
+              U
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-base font-black text-white tracking-widest uppercase">SABARI</h2>
+                <h2 className="text-base font-black text-white tracking-widest uppercase">UDHAYA</h2>
                 <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-[var(--primary)]/15 text-[var(--primary)] border border-[var(--primary)]/30 uppercase">PRO</span>
               </div>
               <p className="text-[11px] text-slate-400 font-mono tracking-wider">Dev Admin Control</p>
@@ -149,7 +149,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <div className="relative">
               <div className="w-9 h-9 rounded-xl overflow-hidden border border-white/10 bg-[#121212] relative shadow-lg">
                 <img 
-                  src={getFileUrl(profile?.profile_image) || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.name || 'S')}&background=0a0a0a&color=00E5FF&size=100`}
+                  src={getFileUrl(profile?.profile_image) || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.name || 'U')}&background=0a0a0a&color=FACC15&size=100`}
                   alt="Admin" 
                   className="w-full h-full object-cover"
                 />
@@ -157,8 +157,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-400 rounded-full border-2 border-[#070a11] shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-bold text-white truncate">{profile?.name || "Sabari Developer"}</p>
-              <p className="text-[10px] text-slate-400 truncate font-mono">sabari@portfolio</p>
+              <p className="text-xs font-bold text-white truncate">{profile?.name || "Udhayachandran"}</p>
+              <p className="text-[10px] text-slate-400 truncate font-mono">udhaya@portfolio</p>
             </div>
           </div>
           

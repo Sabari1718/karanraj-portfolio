@@ -58,9 +58,9 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         token
       }
     });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, message: 'Server Error during login' });
+  } catch (error: any) {
+    console.error("LOGIN ERROR DETAILS:", error);
+    res.status(500).json({ success: false, message: error?.message || 'Server Error during login' });
   }
 };
 
