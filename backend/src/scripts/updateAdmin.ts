@@ -6,8 +6,8 @@ dotenv.config();
 
 async function updateAdmin() {
   try {
-    const email = 'sabari1718@gmail.com';
-    const password = 'rcb@1718';
+    const email = 'udhaya@gmail.com';
+    const password = 'uc@123456';
     
     // Hash the new password
     const salt = await bcrypt.genSalt(10);

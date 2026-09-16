@@ -1,5 +1,5 @@
 // Base URL for our backend API
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://udhaya-portfolio-backend.onrender.com/api';
 const BASE_URL = API_URL.replace('/api', '');
 
 // Helper: get auth token from localStorage (client-side only)
