@@ -9,7 +9,7 @@ import { Menu, Save, CheckCircle, AlertCircle } from "lucide-react";
 
 export default function NavbarAdmin() {
   const [settings, setSettings] = useState({
-    logo_name: "Udhayachandran Portfolio",
+    logo_name: "Karanraj Portfolio",
     about_label: "About",
     projects_label: "Projects",
     skills_label: "Skills",
@@ -103,7 +103,7 @@ export default function NavbarAdmin() {
                 value={settings.logo_name}
                 onChange={(e) => setSettings({ ...settings, logo_name: e.target.value })}
                 className="bg-black/50 border-white/10 text-white focus:border-[var(--primary)] h-12 text-lg px-4"
-                placeholder="e.g. Udhayachandran Portfolio"
+                placeholder="e.g. Karanraj Portfolio"
                 required
               />
               <p className="text-xs text-[var(--text-secondary)]">Displayed on the top left of the navigation bar.</p>

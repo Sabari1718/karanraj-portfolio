@@ -14,7 +14,7 @@ export const getNavbarSettings = async (req: Request, res: Response): Promise<vo
       res.status(200).json({
         success: true,
         data: {
-          logo_name: 'Udhayachandran Portfolio',
+          logo_name: 'Karanraj Portfolio',
           about_label: 'About',
           projects_label: 'Projects',
           skills_label: 'Skills',
@@ -63,7 +63,7 @@ export const updateNavbarSettings = async (req: Request, res: Response): Promise
       show_contact
     } = req.body;
 
-    const safeLogoName = logo_name?.trim() || 'Udhayachandran Portfolio';
+    const safeLogoName = logo_name?.trim() || 'Karanraj Portfolio';
     const safeAboutLabel = about_label?.trim() || 'About';
     const safeProjectsLabel = projects_label?.trim() || 'Projects';
     const safeSkillsLabel = skills_label?.trim() || 'Skills';

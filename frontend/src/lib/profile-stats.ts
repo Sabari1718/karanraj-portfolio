@@ -7,13 +7,16 @@ export interface HeroStatsData {
   repos_count?: string | number | null;
   badge_text?: string | null;
   greeting_text?: string | null;
+  hero_badge_1?: string | null;
+  hero_badge_2?: string | null;
+  security_focus?: string | null;
 }
 
 export const DEFAULT_BIO =
-  "I build high-performance mobile and web applications that solve real-world problems. Specializing in Flutter, React, and Node.js.";
+  "Dedicated Cyber Security Enthusiast & Ethical Hacker focused on securing network infrastructures, identifying vulnerabilities, and developing resilient digital defense mechanisms.";
 
 /**
- * Extracts hero stat metrics, badge text, greeting, and bio from profile.
+ * Extracts hero stat metrics, badge text, greeting, hero badges, and bio from profile.
  * Prefers direct column values if available, otherwise seamlessly extracts
  * from metadata embedded in bio.
  */
@@ -25,6 +28,9 @@ export function extractProfileStats(profile: Profile | null) {
     repos_count: profile?.repos_count,
     badge_text: profile?.badge_text,
     greeting_text: profile?.greeting_text,
+    hero_badge_1: (profile as any)?.hero_badge_1 || null,
+    hero_badge_2: (profile as any)?.hero_badge_2 || null,
+    security_focus: (profile as any)?.security_focus || null,
   };
 
   let cleanBio = profile?.bio || "";
@@ -52,6 +58,15 @@ export function extractProfileStats(profile: Profile | null) {
         if (!stats.greeting_text && parsed.greeting_text) {
           stats.greeting_text = parsed.greeting_text;
         }
+        if (!stats.hero_badge_1 && parsed.hero_badge_1) {
+          stats.hero_badge_1 = parsed.hero_badge_1;
+        }
+        if (!stats.hero_badge_2 && parsed.hero_badge_2) {
+          stats.hero_badge_2 = parsed.hero_badge_2;
+        }
+        if (!stats.security_focus && parsed.security_focus) {
+          stats.security_focus = parsed.security_focus;
+        }
       }
       cleanBio = cleanBio.replace(/<!--STATS:[\s\S]*?-->/g, "").trim();
     } catch {
@@ -67,6 +82,9 @@ export function extractProfileStats(profile: Profile | null) {
       repos_count: stats.repos_count || "10+",
       badge_text: stats.badge_text || "Open to Opportunities",
       greeting_text: stats.greeting_text || "Hello, I'm",
+      hero_badge_1: stats.hero_badge_1 || "Cyber Security",
+      hero_badge_2: stats.hero_badge_2 || "Ethical Hacking",
+      security_focus: stats.security_focus || "Penetration Testing & Defense",
     },
     cleanBio: cleanBio || DEFAULT_BIO,
   };
@@ -75,7 +93,7 @@ export function extractProfileStats(profile: Profile | null) {
 /**
  * Embeds stats metadata into the bio string.
  * This guarantees that even if the backend is running a version without
- * new table columns, the stats, badge, and greeting are 100% saved into MySQL.
+ * new table columns, the stats, badge, greeting, and hero badges are 100% saved into MySQL.
  */
 export function embedProfileStats(
   rawBio: string | null | undefined,
@@ -89,6 +107,9 @@ export function embedProfileStats(
     repos_count: stats.repos_count || "10+",
     badge_text: stats.badge_text || "Open to Opportunities",
     greeting_text: stats.greeting_text || "Hello, I'm",
+    hero_badge_1: stats.hero_badge_1 || "Cyber Security",
+    hero_badge_2: stats.hero_badge_2 || "Ethical Hacking",
+    security_focus: stats.security_focus || "Penetration Testing & Defense",
   });
 
   return clean ? `${clean}\n\n<!--STATS:${payload}-->` : `<!--STATS:${payload}-->`;

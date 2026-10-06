@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Section, MassSectionHeader } from "@/components/ui/section";
 import { Card, CardContent } from "@/components/ui/card";
 import { Experience, Education } from "@/types";
-import { Briefcase, GraduationCap, Calendar, MapPin, Award, Building, Sparkles } from "lucide-react";
+import { Briefcase, GraduationCap, Calendar, MapPin, Award, Building, ShieldCheck, Terminal } from "lucide-react";
 
 export function ExperienceSection({ experiences }: { experiences: Experience[] }) {
   if (!experiences || experiences.length === 0) return null;
@@ -30,10 +30,10 @@ export function ExperienceSection({ experiences }: { experiences: Experience[] }
   return (
     <Section id="experience">
       <MassSectionHeader
-        badge="Career Milestones"
-        titleWhite="Work"
+        badge="Career & Field Work"
+        titleWhite="Professional"
         titleGradient="Experience"
-        subtitle="Professional roles, engineering impact, and production deployments across my journey."
+        subtitle="Security roles, systems engineering, and defensive operations across my technical journey."
         watermark="EXPERIENCE"
         icon={<Briefcase size={14} />}
       />
@@ -46,56 +46,56 @@ export function ExperienceSection({ experiences }: { experiences: Experience[] }
           viewport={{ once: true }}
           className="relative"
         >
-          {/* Timeline line */}
-          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[var(--primary)] via-white/10 to-transparent hidden sm:block" />
+          {/* Timeline line with Cyber Gradient */}
+          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#00ff9d] via-[#00f0ff]/30 to-transparent hidden sm:block" />
 
           <div className="flex flex-col">
             {experiences.map((exp, i) => (
-              <motion.div key={exp.id || i} variants={item} className="relative sm:pl-20" style={{ marginBottom: '80px' }}>
-                {/* Timeline dot */}
-                <div className="absolute left-0 top-6 w-12 h-12 rounded-full bg-[var(--background)] border-2 border-[var(--primary)] hidden sm:flex items-center justify-center shadow-[0_0_15px_rgba(0,229,255,0.4)]">
+              <motion.div key={exp.id || i} variants={item} className="relative sm:pl-20" style={{ marginBottom: '64px' }}>
+                {/* Timeline cyber dot */}
+                <div className="absolute left-0 top-6 w-12 h-12 rounded-full bg-[#05070a] border-2 border-[#00ff9d] hidden sm:flex items-center justify-center shadow-[0_0_15px_rgba(0,255,157,0.35)]">
                   {exp.logo_url ? (
                     <img src={exp.logo_url} alt={exp.company} className="w-7 h-7 rounded-full object-cover" />
                   ) : (
-                    <Briefcase size={18} className="text-[var(--primary)]" />
+                    <ShieldCheck size={18} className="text-[#00ff9d]" />
                   )}
                 </div>
 
-                <Card className="exp-card hover:border-[var(--primary)]/30 transition-all duration-400 group">
-                  <CardContent style={{ padding: '40px' }}>
-                    <div className="flex flex-wrap justify-between items-start" style={{ gap: '20px', marginBottom: '24px' }}>
+                <Card className="exp-card hover:border-[#00ff9d]/40 transition-all duration-400 group">
+                  <CardContent style={{ padding: '36px' }}>
+                    <div className="flex flex-wrap justify-between items-start" style={{ gap: '16px', marginBottom: '20px' }}>
                       <div>
-                        <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-[var(--primary)] transition-colors mb-2">{exp.role}</h3>
-                        <h4 className="text-lg md:text-xl text-[var(--primary)] font-medium">{exp.company}</h4>
+                        <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-[#00ff9d] transition-colors mb-1.5">{exp.role}</h3>
+                        <h4 className="text-base md:text-lg text-[#00f0ff] font-medium font-mono">{exp.company}</h4>
                       </div>
                       {Boolean(exp.currently_working) ? (
-                        <span className="px-3 py-1 rounded-full text-xs font-bold bg-green-500/15 border border-green-500/30 text-green-400 flex-shrink-0">
-                          Current
+                        <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#00ff9d]/15 border border-[#00ff9d]/30 text-[#00ff9d] flex-shrink-0 shadow-[0_0_10px_rgba(0,255,157,0.2)]">
+                          [ ACTIVE ]
                         </span>
                       ) : null}
                     </div>
 
-                    <div className="flex flex-wrap text-sm text-[var(--text-secondary)]" style={{ gap: '16px', marginBottom: '16px' }}>
+                    <div className="flex flex-wrap text-xs md:text-sm font-mono text-slate-400" style={{ gap: '16px', marginBottom: '16px' }}>
                       <div className="flex items-center gap-1.5">
-                        <Calendar size={13} />
+                        <Calendar size={13} className="text-[#00ff9d]" />
                         <span>
                           {exp.start_date ? new Date(exp.start_date).toLocaleDateString("en-US", { month: "short", year: "numeric" }) : "?"} —{" "}
                           {Boolean(exp.currently_working) ? "Present" : exp.end_date ? new Date(exp.end_date).toLocaleDateString("en-US", { month: "short", year: "numeric" }) : "Present"}
                         </span>
                         {getDuration(exp) && (
-                          <span className="px-2 py-0.5 rounded-full bg-white/5 text-xs">{getDuration(exp)}</span>
+                          <span className="px-2 py-0.5 rounded-full bg-white/5 text-xs text-slate-300">{getDuration(exp)}</span>
                         )}
                       </div>
                       {exp.location && (
                         <div className="flex items-center gap-1.5">
-                          <MapPin size={13} />
+                          <MapPin size={13} className="text-[#00f0ff]" />
                           <span>{exp.location}</span>
                         </div>
                       )}
                     </div>
 
                     {exp.description && (
-                      <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{exp.description}</p>
+                      <p className="text-sm text-slate-300 leading-relaxed font-sans">{exp.description}</p>
                     )}
 
                     {exp.technologies && (
@@ -128,13 +128,13 @@ export function EducationSection({ education }: { education: Education[] }) {
   const item = { hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.5 } } };
 
   return (
-    <Section id="education" className="bg-white/[0.02]">
+    <Section id="education" className="bg-white/[0.015]">
       {/* Section Header */}
       <MassSectionHeader
-        badge="Academic Background"
+        badge="Academic Foundations"
         titleWhite="Education &"
         titleGradient="Qualifications"
-        subtitle="Academic foundations and degree milestones that shaped my software engineering skillset."
+        subtitle="Academic degree milestones that shaped my software engineering and computing foundations."
         watermark="EDUCATION"
         icon={<GraduationCap size={14} />}
       />
@@ -146,7 +146,7 @@ export function EducationSection({ education }: { education: Education[] }) {
           whileInView="show"
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-2"
-          style={{ gap: '32px' }}
+          style={{ gap: '28px' }}
         >
           {education.map((edu, i) => {
             const startYear = edu.start_date ? new Date(edu.start_date).getFullYear() : "";
@@ -155,46 +155,41 @@ export function EducationSection({ education }: { education: Education[] }) {
 
             return (
               <motion.div key={edu.id || i} variants={item} className="h-full flex">
-                <Card className="edu-card w-full flex flex-col justify-between group hover:border-[var(--primary)]/40 transition-all duration-400">
-                  <CardContent style={{ padding: '36px 32px' }} className="flex flex-col flex-1">
+                <Card className="edu-card w-full flex flex-col justify-between group hover:border-[#00f0ff]/40 transition-all duration-400">
+                  <CardContent style={{ padding: '32px 28px' }} className="flex flex-col flex-1">
                     {/* Top row: Icon & Dates */}
-                    <div className="flex items-center justify-between" style={{ marginBottom: '22px' }}>
-                      <div className="w-12 h-12 rounded-2xl bg-[var(--primary)]/10 border border-[var(--primary)]/25 flex items-center justify-center text-[var(--primary)] shadow-[0_0_16px_rgba(0,229,255,0.15)] group-hover:scale-105 transition-transform">
-                        <GraduationCap size={22} />
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="w-10 h-10 rounded-xl bg-[#00f0ff]/10 border border-[#00f0ff]/25 flex items-center justify-center text-[#00f0ff] shadow-[0_0_12px_rgba(0,240,255,0.15)] group-hover:scale-105 transition-transform">
+                        <GraduationCap size={20} />
                       </div>
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-white/5 border border-white/10 text-slate-300">
-                        <Calendar size={13} className="text-[var(--primary)]" />
+                      <span className="text-xs font-mono font-semibold px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300">
                         {dateStr}
                       </span>
                     </div>
 
-                    {/* Degree */}
-                    <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-[var(--primary)] transition-colors leading-snug" style={{ marginBottom: '8px' }}>
-                      {edu.degree}{edu.field ? ` in ${edu.field}` : ""}
-                    </h3>
+                    {/* Degree & Field */}
+                    <div className="flex-1">
+                      <h4 className="text-lg md:text-xl font-bold text-white group-hover:text-[#00f0ff] transition-colors mb-1.5">
+                        {edu.degree} {edu.field ? `in ${edu.field}` : ""}
+                      </h4>
+                      <h5 className="text-sm font-mono text-[#00ff9d] mb-3 flex items-center gap-1.5">
+                        <Building size={13} />
+                        {edu.institution}
+                      </h5>
 
-                    {/* Institution */}
-                    <div className="flex items-start gap-2 text-sm md:text-base text-slate-300 font-medium" style={{ marginBottom: '18px' }}>
-                      <Building size={16} className="text-[var(--primary)] flex-shrink-0 mt-1" />
-                      <span>{edu.institution}</span>
+                      {edu.grade && (
+                        <div className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#00f0ff] bg-[#00f0ff]/10 border border-[#00f0ff]/20 px-2.5 py-1 rounded-lg mb-3">
+                          <Award size={12} />
+                          <span>Grade: {edu.grade}</span>
+                        </div>
+                      )}
+
+                      {edu.description && (
+                        <p className="text-xs md:text-sm text-slate-400 leading-relaxed font-sans mt-2">
+                          {edu.description}
+                        </p>
+                      )}
                     </div>
-
-                    {/* Grade Badge */}
-                    {edu.grade && (
-                      <div style={{ marginBottom: '18px' }}>
-                        <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 shadow-[0_0_12px_rgba(16,185,129,0.15)]">
-                          <Award size={13} className="text-emerald-400" />
-                          CGPA: {edu.grade}
-                        </span>
-                      </div>
-                    )}
-
-                    {/* Description */}
-                    {edu.description && (
-                      <p className="text-sm text-slate-400 leading-relaxed mt-auto pt-2 border-t border-white/5">
-                        {edu.description}
-                      </p>
-                    )}
                   </CardContent>
                 </Card>
               </motion.div>

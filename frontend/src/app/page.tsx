@@ -16,8 +16,6 @@ export default async function Home() {
       PortfolioAPI.getSocialLinks(),
     ]);
 
-  console.log('[page] projects:', projectsRes.success, 'count:', projectsRes.data?.length ?? 0);
-
   const profile: Profile | null = profileRes.success ? profileRes.data : null;
   const projects: Project[] = projectsRes.success && Array.isArray(projectsRes.data) ? projectsRes.data : [];
   const skills: Skill[] = skillsRes.success && Array.isArray(skillsRes.data) ? skillsRes.data : [];
@@ -37,8 +35,17 @@ export default async function Home() {
       />
 
       <footer className="footer border-t border-white/5 py-8">
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-center text-xs md:text-sm text-slate-500 font-mono">
-          <p>&lt;EndOfPortfolio /&gt;</p>
+        <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 font-mono">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00ff9d] animate-pulse" />
+            <span className="text-slate-400">STATUS: SYSTEM_SECURE</span>
+          </div>
+          <p className="text-center text-slate-400">
+            &copy; {new Date().getFullYear()} Karanraj • Cyber Security Portfolio
+          </p>
+          <div className="text-slate-500 text-[11px]">
+            <span>[ ENCRYPTED ENDPOINT ]</span>
+          </div>
         </div>
       </footer>
     </main>

@@ -1,10 +1,22 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Profile } from "@/types";
-import { Download, ArrowDown, MapPin, Briefcase, Terminal } from "lucide-react";
+import {
+  Download,
+  ArrowDown,
+  MapPin,
+  Shield,
+  ShieldCheck,
+  Terminal,
+  Lock,
+  Cpu,
+  ExternalLink,
+  ChevronRight,
+  Sparkles,
+} from "lucide-react";
 import { getFileUrl } from "@/services/api";
 import { CountUp } from "@/components/ui/CountUp";
 import { extractProfileStats } from "@/lib/profile-stats";
@@ -14,11 +26,23 @@ interface Props {
   projectCount: number;
 }
 
-const TITLES = ["Flutter Developer", "Full-Stack Developer", "Mobile App Developer"];
-
 export function HeroSection({ profile, projectCount }: Props) {
   const profileImageUrl = profile?.profile_image ? getFileUrl(profile.profile_image) : null;
   const { stats: profileStats, cleanBio } = extractProfileStats(profile);
+
+  // Dynamic titles parsed directly from Admin profile.headline
+  const rawHeadline = profile?.headline?.trim();
+  const titles = rawHeadline
+    ? rawHeadline.includes("|")
+      ? rawHeadline.split("|").map((s) => s.trim()).filter(Boolean)
+      : rawHeadline.includes(",")
+      ? rawHeadline.split(",").map((s) => s.trim()).filter(Boolean)
+      : [rawHeadline]
+    : ["Cyber Security Specialist", "Ethical Hacker", "Security Researcher"];
+
+  // Dynamic hero badges from Admin
+  const badge1 = profileStats.hero_badge_1 || "Cyber Security";
+  const badge2 = profileStats.hero_badge_2 || "Ethical Hacking";
 
   // Parse number and suffix from strings like "2+", "1+", "15+", or number
   const parseStat = (
@@ -46,9 +70,9 @@ export function HeroSection({ profile, projectCount }: Props) {
 
   const stats = [
     { label: "Years Experience", value: expStat.value, suffix: expStat.suffix },
-    { label: "Projects Built", value: projStat.value, suffix: projStat.suffix },
-    { label: "Technologies", value: techStat.value, suffix: techStat.suffix },
-    { label: "GitHub Repos", value: repoStat.value, suffix: repoStat.suffix },
+    { label: "Security Projects", value: projStat.value, suffix: projStat.suffix },
+    { label: "Arsenal / Tools", value: techStat.value, suffix: techStat.suffix },
+    { label: "Security Repos", value: repoStat.value, suffix: repoStat.suffix },
   ];
 
   return (
@@ -58,87 +82,92 @@ export function HeroSection({ profile, projectCount }: Props) {
       <div className="hero-bg-blob hero-blob-2" />
       <div className="hero-bg-grid" />
 
-      <div className="container mx-auto px-6 py-32 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
+      <div className="container mx-auto px-6 py-28 md:py-36 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center gap-14 lg:gap-20">
 
           {/* Left: Text Content */}
           <motion.div
-            initial={{ opacity: 0, x: -60 }}
+            initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="flex-1 text-center lg:text-left"
           >
-            {/* Availability / Status Badge */}
+            {/* Availability / Security Status Pill */}
             {profileStats.badge_text && (
               <motion.div
-                initial={{ opacity: 0, y: -20 }}
+                initial={{ opacity: 0, y: -16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-medium mb-6"
+                transition={{ delay: 0.15 }}
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#00ff9d]/10 border border-[#00ff9d]/30 text-[#00ff9d] text-xs font-mono font-semibold mb-6 shadow-[0_0_16px_rgba(0,255,157,0.15)]"
               >
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                {profileStats.badge_text}
+                <span className="w-2 h-2 rounded-full bg-[#00ff9d] animate-pulse" />
+                <span className="tracking-wide uppercase">{profileStats.badge_text}</span>
               </motion.div>
             )}
 
-            {/* Greeting / Subheading with Developer Terminal Style */}
-            <div className="flex justify-center lg:justify-start mb-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-yellow-950/40 border border-yellow-500/30 text-yellow-400 font-mono text-xs md:text-sm shadow-[0_0_15px_rgba(250,204,21,0.15)] backdrop-blur-md">
-                <Terminal size={14} className="text-yellow-400 animate-pulse flex-shrink-0" />
-                <span className="text-slate-400 font-semibold">//</span>
-                <span className="font-bold tracking-wider text-yellow-300 uppercase">{profileStats.greeting_text || "Hello, I'm"}</span>
+            {/* Terminal Greeting Tag */}
+            <div className="flex justify-center lg:justify-start mb-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#061017] border border-[#00f0ff]/30 text-[#00f0ff] font-mono text-xs md:text-sm shadow-[0_0_15px_rgba(0,240,255,0.12)] backdrop-blur-md">
+                <Terminal size={14} className="text-[#00ff9d] animate-pulse flex-shrink-0" />
+                <span className="text-slate-500 font-bold">//</span>
+                <span className="font-bold tracking-wider text-slate-200 uppercase">
+                  {profileStats.greeting_text || "Hello, I'm"}
+                </span>
               </div>
             </div>
 
-            {/* Name with Developer Aesthetic */}
-            <h1 className="hero-developer-name text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 leading-tight tracking-tight">
-              {profile?.display_name || profile?.name || "Udhayachandran"}
+            {/* Name */}
+            <h1 className="hero-developer-name text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-3 leading-tight tracking-tight">
+              {profile?.display_name || profile?.name || "Karanraj"}
             </h1>
 
-            {/* Animated Title */}
-            <AnimatedTitles titles={TITLES} />
+            {/* Dynamic Headline / Role from Admin */}
+            <AnimatedTitles titles={titles} />
 
             {/* Location */}
             {profile?.location && (
               <div
                 className="flex items-center gap-2.5 justify-center lg:justify-start text-[var(--text-secondary)]"
-                style={{ marginTop: '24px', marginBottom: '24px' }}
+                style={{ marginTop: '20px', marginBottom: '20px' }}
               >
-                <div className="w-8 h-8 rounded-full bg-[var(--primary)]/10 border border-[var(--primary)]/25 flex items-center justify-center text-[var(--primary)] shadow-[0_0_12px_rgba(250,204,21,0.15)]">
-                  <MapPin size={15} />
+                <div className="w-7 h-7 rounded-full bg-[#00ff9d]/10 border border-[#00ff9d]/25 flex items-center justify-center text-[#00ff9d] shadow-[0_0_10px_rgba(0,255,157,0.2)]">
+                  <MapPin size={13} />
                 </div>
-                <span className="text-sm md:text-base font-semibold uppercase tracking-wider text-slate-300">{profile.location}</span>
+                <span className="text-xs md:text-sm font-mono uppercase tracking-wider text-slate-300">
+                  {profile.location}
+                </span>
               </div>
             )}
 
             {/* Bio */}
             <p
               className="text-base md:text-lg text-[var(--text-secondary)] max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal"
-              style={{ marginBottom: '32px' }}
+              style={{ marginBottom: '28px' }}
             >
-              {cleanBio || "I build high-performance mobile and web applications that solve real-world problems. Specializing in Flutter, React, and Node.js."}
+              {cleanBio || "Dedicated Cyber Security Enthusiast & Ethical Hacker focused on securing network infrastructures, identifying vulnerabilities, and developing resilient digital defense mechanisms."}
             </p>
 
             {/* CTA Buttons */}
             <div
               className="hero-cta-group"
-              style={{ gap: '18px', marginTop: '10px', marginBottom: '44px' }}
+              style={{ gap: '16px', marginTop: '8px', marginBottom: '40px' }}
             >
               <a href="#contact">
-                <Button size="lg" className="hire-btn rounded-full font-bold text-base flex items-center justify-center gap-2">
-                  <Briefcase size={18} />
-                  Hire Me
+                <Button size="lg" className="hire-btn rounded-full font-bold text-sm md:text-base flex items-center justify-center gap-2">
+                  <ShieldCheck size={18} />
+                  Connect / Hire Me
                 </Button>
               </a>
               <a href="#projects">
-                <Button size="lg" className="view-work-btn rounded-full font-bold text-base flex items-center justify-center">
-                  View My Work
+                <Button size="lg" className="view-work-btn rounded-full font-bold text-sm md:text-base flex items-center justify-center gap-2">
+                  <Terminal size={16} />
+                  View Security Projects
                 </Button>
               </a>
               {profile?.resume_url && (
                 <a href={profile.resume_url} target="_blank" rel="noreferrer">
-                  <Button size="lg" className="resume-btn rounded-full font-bold text-base flex items-center justify-center gap-2">
-                    Resume <Download size={16} />
+                  <Button size="lg" className="resume-btn rounded-full font-semibold text-sm md:text-base flex items-center justify-center gap-2">
+                    Resume <Download size={15} />
                   </Button>
                 </a>
               )}
@@ -147,20 +176,20 @@ export function HeroSection({ profile, projectCount }: Props) {
             {/* Stats Row */}
             <div
               className="hero-stats-grid"
-              style={{ gap: '16px', marginTop: '16px', marginBottom: '20px' }}
+              style={{ gap: '14px', marginTop: '12px', marginBottom: '16px' }}
             >
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 + i * 0.1 }}
+                  transition={{ delay: 0.35 + i * 0.08 }}
                   className="stat-card group"
                 >
-                  <div className="text-2xl md:text-3xl lg:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[#F59E0B]">
+                  <div className="text-2xl md:text-3xl lg:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#00ff9d] to-[#00f0ff]">
                     <CountUp end={stat.value} suffix={stat.suffix} />
                   </div>
-                  <div className="text-[11px] md:text-xs font-semibold text-slate-400 mt-1.5 uppercase tracking-wider leading-tight group-hover:text-slate-200 transition-colors">
+                  <div className="text-[10px] md:text-xs font-mono font-semibold text-slate-400 mt-1.5 uppercase tracking-wider leading-tight group-hover:text-[#00ff9d] transition-colors">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -168,73 +197,84 @@ export function HeroSection({ profile, projectCount }: Props) {
             </div>
           </motion.div>
 
-          {/* Right: Profile Photo */}
+          {/* Right: Cyber Security Profile Image Area */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.7 }}
+            initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="flex-shrink-0 flex justify-center"
           >
             <div className="profile-photo-wrapper group">
-              {/* Developer Ambient Glow */}
+              {/* Ambient Radar Glow */}
               <div className="profile-photo-ambient-glow" />
 
-              {/* Developer Orbit / Radar Ring */}
+              {/* Radar Orbit Targeting Ring */}
               <div className="profile-photo-tech-outer" />
 
-              {/* Developer Glowing Neon Ring */}
+              {/* Neon Cyber Ring */}
               <div className="profile-photo-ring" />
 
+              {/* Photo Container */}
               <div className="profile-photo-inner">
                 <img
-                  src={profileImageUrl || "https://ui-avatars.com/api/?name=U&background=121212&color=FACC15&size=400"}
-                  alt={profile?.name || "Udhayachandran"}
+                  src={profileImageUrl || "https://ui-avatars.com/api/?name=Karanraj&background=05070A&color=00FF9D&size=400"}
+                  alt={profile?.name || "Karanraj"}
                   className="w-full h-full object-cover rounded-full transition-transform duration-500 group-hover:scale-105"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src =
                       "https://ui-avatars.com/api/?name=" +
-                      encodeURIComponent(profile?.name || "U") +
-                      "&background=121212&color=FACC15&size=400";
+                      encodeURIComponent(profile?.name || "K") +
+                      "&background=05070A&color=00FF9D&size=400";
                   }}
                 />
               </div>
 
-              {/* Developer Status / Code Tag */}
+              {/* Security Status Tag */}
               <div className="profile-code-chip">
                 <span className="chip-dot" />
-                <span className="font-mono text-[11px] font-semibold tracking-wide text-yellow-300">&lt;udhayachandran.dev /&gt;</span>
+                <span className="font-mono text-[10px] md:text-[11px] font-bold tracking-wider text-[#00ff9d] uppercase">
+                  [ SYSTEM SECURE ]
+                </span>
               </div>
-              {/* Floating badges */}
+
+              {/* Dynamic Floating Badges (Admin Controlled) */}
               <motion.div
                 animate={{ y: [-4, 4, -4] }}
-                transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                transition={{ repeat: Infinity, duration: 3.2, ease: "easeInOut" }}
                 className="floating-badge floating-badge-1"
               >
-                <span className="text-lg">⚡</span>
-                <span className="text-xs font-bold text-white">Flutter Expert</span>
+                <Shield size={16} className="text-[#00f0ff]" />
+                <span className="text-xs font-mono font-bold text-white tracking-wide">
+                  {badge1}
+                </span>
               </motion.div>
+
               <motion.div
                 animate={{ y: [4, -4, 4] }}
-                transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
+                transition={{ repeat: Infinity, duration: 3.6, ease: "easeInOut" }}
                 className="floating-badge floating-badge-2"
               >
-                <span className="text-lg">🚀</span>
-                <span className="text-xs font-bold text-white">Full-Stack Dev</span>
+                <Terminal size={16} className="text-[#00ff9d]" />
+                <span className="text-xs font-mono font-bold text-white tracking-wide">
+                  {badge2}
+                </span>
               </motion.div>
             </div>
           </motion.div>
         </div>
 
-        {/* Scroll indicator - safely placed and hidden on compact screens */}
+        {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.7 }}
-          transition={{ delay: 1.5 }}
-          className="hidden 2xl:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-[var(--text-secondary)] pointer-events-none"
+          transition={{ delay: 1.2 }}
+          className="hidden 2xl:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-slate-500 pointer-events-none"
         >
-          <span className="text-[10px] tracking-[0.25em] uppercase font-semibold">Scroll Down</span>
+          <span className="text-[10px] tracking-[0.25em] font-mono uppercase font-semibold text-[#00ff9d]/70">
+            SEC://SCROLL_DOWN
+          </span>
           <motion.div animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 1.6 }}>
-            <ArrowDown size={16} className="text-[var(--primary)]" />
+            <ArrowDown size={15} className="text-[#00ff9d]" />
           </motion.div>
         </motion.div>
       </div>
@@ -246,28 +286,31 @@ function AnimatedTitles({ titles }: { titles: string[] }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
+    if (titles.length <= 1) return;
     const interval = setInterval(() => {
       setIndex((i) => (i + 1) % titles.length);
-    }, 2800);
+    }, 3200);
     return () => clearInterval(interval);
   }, [titles.length]);
 
   return (
-    <div className="hero-role-wrapper flex items-center justify-center lg:justify-start min-h-[3.75rem] md:min-h-[4.25rem] mb-4">
+    <div className="hero-role-wrapper flex items-center justify-center lg:justify-start min-h-[3.5rem] md:min-h-[4rem] mb-3">
       <div className="hero-role-inner flex items-center gap-1.5 sm:gap-2">
         <span className="hero-role-tag">&lt;</span>
         <div className="overflow-hidden py-1">
-          <motion.div
-            key={index}
-            initial={{ y: 28, opacity: 0, filter: "blur(4px)" }}
-            animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-            exit={{ y: -28, opacity: 0, filter: "blur(4px)" }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
-          >
-            <span className="hero-developer-title">
-              {titles[index]}
-            </span>
-          </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={titles[index] || index}
+              initial={{ y: 24, opacity: 0, filter: "blur(3px)" }}
+              animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+              exit={{ y: -24, opacity: 0, filter: "blur(3px)" }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            >
+              <span className="hero-developer-title">
+                {titles[index] || "Cyber Security Specialist"}
+              </span>
+            </motion.div>
+          </AnimatePresence>
         </div>
         <span className="hero-role-tag">/&gt;</span>
         <span className="hero-dev-cursor" />

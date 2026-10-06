@@ -43,7 +43,7 @@ app.use('/api/navbar', navbar_routes_1.default);
 app.get('/api/health', (req, res) => {
     res.status(200).json({
         success: true,
-        message: 'Udhayachandran Portfolio API is running'
+        message: 'Karanraj Portfolio API is running'
     });
 });
 exports.default = app;
